@@ -1,0 +1,36 @@
+{
+  "name": "EvalSystem Dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "9.0"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+
+  "forwardPorts": [5000, 5173, 5432],
+  "portsAttributes": {
+    "5000": { "label": "Backend API" },
+    "5173": { "label": "Frontend (Vite)" },
+    "5432": { "label": "PostgreSQL" }
+  },
+
+  "postCreateCommand": "dotnet restore backend/EvalSystem.sln && cd frontend && npm install",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ckolkman.vscode-postgres"
+      ]
+    }
+  }
+}
